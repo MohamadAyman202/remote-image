@@ -1,0 +1,24 @@
+{
+  "name": "ghanem/remote-image",
+  "description": "Fetch product images from remote storage based on env config",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Ghanem\\RemoteImage\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ghanem\\RemoteImage\\RemoteImageServiceProvider"
+      ]
+    }
+  }
+}
