@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\Log;
 
 class RemoteImageService
 {
-    public function getImage(string $productName, string $defaultImage): string
+    public function getImage(string $productName): ?string
     {
         if (config('remote-image.enable') === false) {
-            return $defaultImage;
+            return null;
         }
 
         $cacheDuration = config('remote-image.cache_duration', 3600);
 
-        return Cache::remember("product_image_{$productName}", $cacheDuration, function () use ($productName, $defaultImage) {
-            return $this->fetchFromApi($productName) ?? $defaultImage;
+        return Cache::remember("product_image_{$productName}", $cacheDuration, function () use ($productName) {
+            return $this->fetchFromApi($productName);
         });
     }
 
